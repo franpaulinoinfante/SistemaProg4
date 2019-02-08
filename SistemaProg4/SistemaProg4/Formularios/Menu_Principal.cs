@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using SistemaProg4.Formularios;
 
-namespace WindowsFormsApp1
+namespace SistemaProg4
 {
-	public partial class Form1 : Form
+	public partial class Menu_Principal : Form
 	{
-		public Form1()
+		public Menu_Principal()
 		{
 			InitializeComponent();
 		}
 
-		[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+       
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
 		private extern static void ReleaseCapture();
 		[DllImport("user32.DLL", EntryPoint = "SendMessage")]
 
@@ -39,7 +42,20 @@ namespace WindowsFormsApp1
 		}
 
 		int LX, LY, SW, SH;
-		private void BtnMaximizar_Click(object sender, EventArgs e)
+
+        private void ITBISToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_ITBIS MiForm = new frm_ITBIS();
+            MiForm.Show();
+        }
+
+        private void ProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProducto MiFOrm = new frmProducto();
+            MiFOrm.Show();
+        }
+
+        private void BtnMaximizar_Click(object sender, EventArgs e)
 		{
 			LX = this.Location.X;
 			LY = this.Location.Y;
