@@ -26,7 +26,7 @@ namespace SistemaProg4.Formularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txt_ID.Text == string.Empty)
+            if ((txt_ID.Text) == string.Empty)
             {
                 try
                 {
