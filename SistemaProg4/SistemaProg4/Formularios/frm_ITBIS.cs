@@ -26,38 +26,35 @@ namespace SistemaProg4.Formularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //int id = int.Parse(txt_ID.Text);
-            //if (id > 0)
-            //{
-            //    try
-            //    {
-            //        objITBIS_DTO.pId = int.Parse(txt_ID.Text);
-            //        objITBIS_DTO.pDescripcion = txt_Drescripcion.Text.Trim();
-            //        objITBIS_DTO.pTarifa = float.Parse(txt_Tarifa.Text.Trim());
-            //        objITBIS_DTO.EditarITBIS();
-            //        MessageBox.Show("Datos registrado");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.ToString());
-            //    }
-            //}
-            //else
-            //{
-            //    try
-            //    {
+            if (txt_ID.Text == string.Empty)
+            {
+                try
+                {
                     objITBIS_DTO.pDescripcion = txt_Drescripcion.Text.Trim();
                     objITBIS_DTO.pTarifa = float.Parse(txt_Tarifa.Text.Trim());
                     objITBIS_DTO.InsertarITBIS();
                     MessageBox.Show("Datos registrado");
-                    //MostrarITBIS();
-
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.ToString());
-                //}
-            //}
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                try
+                {
+                    objITBIS_DTO.pId = int.Parse(txt_ID.Text);
+                    objITBIS_DTO.pDescripcion = txt_Drescripcion.Text.Trim();
+                    objITBIS_DTO.pTarifa = float.Parse(txt_Tarifa.Text.Trim());
+                    objITBIS_DTO.EditarITBIS();
+                    MessageBox.Show("Datos registrado");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
             //MostrarITBIS();
         }
 

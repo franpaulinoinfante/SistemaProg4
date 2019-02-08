@@ -49,8 +49,6 @@ namespace SistemaProg4
                     cmd.Parameters["@Valor"].Value = tarifa;
                     cmd.Connection = connection;
                     cmd.ExecuteNonQuery();
-
-
                 }
 
             }
@@ -77,9 +75,7 @@ namespace SistemaProg4
                     cmd.Parameters["@Valor"].Value = tarifa;
 
                     cmd.Connection = connection;
-                    cmd.ExecuteNonQuery();
-
-
+                    cmd.ExecuteNonQuery();                    
                 }
             }
         }
