@@ -7,7 +7,7 @@ namespace SistemaProg4
     {
         // Propiedades
         private int id;
-        private string descripcion;
+        private string ddescripcion;
         private float tarifa;
 
         public int pId
@@ -18,8 +18,8 @@ namespace SistemaProg4
 
         public string pDescripcion
         {
-            get { return descripcion; }
-            set { descripcion = value; }
+            get { return ddescripcion; }
+            set { ddescripcion = value; }
         }
 
         public float pTarifa
