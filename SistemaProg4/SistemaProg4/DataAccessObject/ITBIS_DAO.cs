@@ -34,7 +34,7 @@ namespace SistemaProg4
 
         protected void Insertar(string descripcion, float tarifa)
         {
-            //comando.Connection = conexion.OpenConectar();
+            //comando.Connection = conexion.OpenConectar();kkkkkkkkkkk
             using (var connection = GetConnection())
             {
                 connection.Open();
