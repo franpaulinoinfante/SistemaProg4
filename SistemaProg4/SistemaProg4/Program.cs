@@ -16,7 +16,7 @@ namespace SistemaProg4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Formularios.frm_ITBIS());
+            Application.Run(new Formularios.frmProducto());
         }
     }
 }

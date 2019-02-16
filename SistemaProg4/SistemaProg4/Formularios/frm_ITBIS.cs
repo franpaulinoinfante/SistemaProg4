@@ -20,7 +20,15 @@ namespace SistemaProg4.Formularios
 
         private void MostrarITBIS()
         {
-            dataGridView1.DataSource = objITBIS_DAO.ListITBIS();
+            try
+            {
+                dataGridView1.DataSource = objITBIS_DAO.ListITBIS();
+            }
+            catch (Exception ex)
+            {   
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

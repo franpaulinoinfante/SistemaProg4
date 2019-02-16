@@ -13,13 +13,12 @@ namespace SistemaProg4
                 connection.Open();
                 using (var cmd = new SqlCommand())
                 {
-                    cmd.Connection = connection;
                     cmd.CommandText = "sp_Buscar_Registro";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = connection;
 
                     using (SqlDataReader leerfilas = cmd.ExecuteReader())
                     {
-                        cmd.Connection = connection;
                         using (var table = new DataTable())
                         {
                             table.Load(leerfilas);
@@ -61,7 +60,9 @@ namespace SistemaProg4
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add(new SqlParameter("@Id_ITBIS", SqlDbType.TinyInt)).Value = objITBIS_DTO.pId;
+
                     cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar, 400)).Value = objITBIS_DTO.pDescripcion;
+
                     cmd.Parameters.Add(new SqlParameter("@Valor", SqlDbType.Float)).Value = objITBIS_DTO.pTarifa;
 
                     //cmd.Parameters["@Id_ITBIS"].Value = id;

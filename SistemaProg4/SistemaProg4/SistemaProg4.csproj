@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="DataAccessObject\ITBIS_DAO.cs" />
     <Compile Include="DataAccessObject\Conexion.cs" />
+    <Compile Include="DataAccessObject\ProductoDAO.cs" />
     <Compile Include="DataTransferObjects\ITBIS_DTO.cs" />
+    <Compile Include="DataTransferObjects\ProductoDTO.cs" />
     <Compile Include="Formularios\Menu_Principal.cs">
       <SubType>Form</SubType>
     </Compile>
