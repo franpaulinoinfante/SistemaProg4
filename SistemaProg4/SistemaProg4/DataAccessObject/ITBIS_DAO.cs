@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections;
 
 namespace SistemaProg4
 {
     public class ITBIS_DAO : Conexion
     {
-        SqlDataReader leerfilas;
-        //DataTable tabla;
-
-
-        protected DataTable MostrarRegistro()
+        public DataTable ListITBIS()
         {
             using (var connection = GetConnection())
             {
@@ -24,21 +15,22 @@ namespace SistemaProg4
                 {
                     cmd.Connection = connection;
                     cmd.CommandText = "sp_Buscar_Registro";
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Connection = connection;
-                    leerfilas = cmd.ExecuteReader();
-
-                    using (var tabla = new DataTable())
+                    using (SqlDataReader leerfilas = cmd.ExecuteReader())
                     {
-                        //tabla = new DataTable();
-                        tabla.Load(leerfilas);
-                        return tabla;
+                        cmd.Connection = connection;
+                        using (var table = new DataTable())
+                        {
+                            table.Load(leerfilas);
+                            return table;
+                        }
                     }
                 }
             }
         }
 
-        protected void Insertar(string descripcion, float tarifa)
+        public void Insertar(ITBIS_DTO objIBTIS)
         {
             using (var connection = GetConnection())
             {
@@ -50,15 +42,15 @@ namespace SistemaProg4
 
                     cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar, 400));
                     cmd.Parameters.Add(new SqlParameter("@Valor", SqlDbType.Float));
-                    cmd.Parameters["@Descripcion"].Value = descripcion;
-                    cmd.Parameters["@Valor"].Value = tarifa;
+                    cmd.Parameters["@Descripcion"].Value = objIBTIS.pDescripcion;
+                    cmd.Parameters["@Valor"].Value = objIBTIS.pTarifa;
 
                     cmd.Connection = connection;
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-        protected void Editar(int id, string descripcion, float tarifa)
+        public void Editar(ITBIS_DTO objITBIS_DTO)
         {
             using (var connection = GetConnection())
             {
@@ -68,9 +60,9 @@ namespace SistemaProg4
                     cmd.CommandText = "sp_Actualizar_Registro";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add(new SqlParameter("@Id_ITBIS", SqlDbType.TinyInt)).Value = id;
-                    cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar, 400)).Value = descripcion;
-                    cmd.Parameters.Add(new SqlParameter("@Valor", SqlDbType.Float)).Value = tarifa;
+                    cmd.Parameters.Add(new SqlParameter("@Id_ITBIS", SqlDbType.TinyInt)).Value = objITBIS_DTO.pId;
+                    cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar, 400)).Value = objITBIS_DTO.pDescripcion;
+                    cmd.Parameters.Add(new SqlParameter("@Valor", SqlDbType.Float)).Value = objITBIS_DTO.pTarifa;
 
                     //cmd.Parameters["@Id_ITBIS"].Value = id;
                     //cmd.Parameters["@Descripcion"].Value = descripcion;

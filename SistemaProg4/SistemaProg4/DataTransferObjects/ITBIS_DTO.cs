@@ -3,12 +3,12 @@
 
 namespace SistemaProg4
 {
-    class ITBIS_DTO : ITBIS_DAO
+    public class ITBIS_DTO : ITBIS_DAO
     {
         // Propiedades
         private int id;
         private string ddescripcion;
-        private float tarifa;
+        private float valor;
 
         public int pId
         {
@@ -24,8 +24,8 @@ namespace SistemaProg4
 
         public float pTarifa
         {
-            get { return tarifa; }
-            set { tarifa = value; }
+            get { return valor; }
+            set { valor = value; }
         }
 
         //private ITBIS_DAO objcad = new ITBIS_DAO();
@@ -34,21 +34,21 @@ namespace SistemaProg4
         /// Mostrar registro
         /// </summary>
         /// <returns>todos los registro</returns>
-        public DataTable MostrarRegistros()
-        {
-            DataTable tabla = new DataTable();
-            tabla = MostrarRegistro();
-            return tabla;
-        }
+        //public DataTable MostrarRegistros()
+        //{
+        //    DataTable tabla = new DataTable();
+        //    tabla = MostrarRegistro();
+        //    return tabla;
+        //}
 
-        public void InsertarITBIS()
-        {
-            Insertar(pDescripcion, pTarifa);
-        }
-        public void EditarITBIS()
-        {
-            Editar(pId, pDescripcion, pTarifa);
-        }
+        //public void InsertarITBIS()
+        //{
+        //    Insertar(pDescripcion, pTarifa);
+        //}
+        //public void EditarITBIS()
+        //{
+        //    Editar(pId, pDescripcion, pTarifa);
+        //}
 
         
     }

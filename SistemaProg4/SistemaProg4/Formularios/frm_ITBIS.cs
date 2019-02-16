@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 
-
-
 namespace SistemaProg4.Formularios
 {
     public partial class frm_ITBIS : Form
     {
         private ITBIS_DTO objITBIS_DTO = new ITBIS_DTO();
+        private ITBIS_DAO objITBIS_DAO = new ITBIS_DAO();
 
         public frm_ITBIS()
         {
@@ -21,7 +20,7 @@ namespace SistemaProg4.Formularios
 
         private void MostrarITBIS()
         {
-            dataGridView1.DataSource = objITBIS_DTO.MostrarRegistros();
+            dataGridView1.DataSource = objITBIS_DAO.ListITBIS();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -34,7 +33,7 @@ namespace SistemaProg4.Formularios
                     objITBIS_DTO.pId = Convert.ToInt32(txt_ID.Text);
                     objITBIS_DTO.pDescripcion = txt_Drescripcion.Text.Trim();
                     objITBIS_DTO.pTarifa = float.Parse(txt_Tarifa.Text.Trim());
-                    objITBIS_DTO.EditarITBIS();
+                    objITBIS_DTO.Editar(objITBIS_DTO);
                     MessageBox.Show("Datos registrado");
                 }
                 catch (Exception ex)
@@ -48,7 +47,7 @@ namespace SistemaProg4.Formularios
                 {
                     objITBIS_DTO.pDescripcion = txt_Drescripcion.Text.Trim();
                     objITBIS_DTO.pTarifa = float.Parse(txt_Tarifa.Text.Trim());
-                    objITBIS_DTO.InsertarITBIS();
+                    objITBIS_DAO.Insertar(objITBIS_DTO);
 
                     MessageBox.Show("Datos registrado");
                 }
