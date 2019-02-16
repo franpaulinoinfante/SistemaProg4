@@ -16,23 +16,25 @@ namespace SistemaProg4.Formularios
 
         private void ITBIS_Load(object sender, EventArgs e)
         {
-            //MostrarITBIS();
+            MostrarITBIS();
         }
 
         private void MostrarITBIS()
         {
-            //dataGridView1.DataSource = objITBIS_DAO.MostrarITBIS();
+            dataGridView1.DataSource = objITBIS_DTO.MostrarRegistros();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if ((txt_ID.Text == string.Empty))
+
+            if (txt_ID.Text != string.Empty)
             {
                 try
                 {
+                    objITBIS_DTO.pId = Convert.ToInt32(txt_ID.Text);
                     objITBIS_DTO.pDescripcion = txt_Drescripcion.Text.Trim();
                     objITBIS_DTO.pTarifa = float.Parse(txt_Tarifa.Text.Trim());
-                    objITBIS_DTO.InsertarITBIS();
+                    objITBIS_DTO.EditarITBIS();
                     MessageBox.Show("Datos registrado");
                 }
                 catch (Exception ex)
@@ -44,10 +46,10 @@ namespace SistemaProg4.Formularios
             {
                 try
                 {
-                    objITBIS_DTO.pId = int.Parse(txt_ID.Text);
                     objITBIS_DTO.pDescripcion = txt_Drescripcion.Text.Trim();
                     objITBIS_DTO.pTarifa = float.Parse(txt_Tarifa.Text.Trim());
-                    objITBIS_DTO.EditarITBIS();
+                    objITBIS_DTO.InsertarITBIS();
+
                     MessageBox.Show("Datos registrado");
                 }
                 catch (Exception ex)
@@ -55,21 +57,32 @@ namespace SistemaProg4.Formularios
                     MessageBox.Show(ex.ToString());
                 }
             }
-            //MostrarITBIS();
-        }
-
-        private void txt_Drescripcion_TextChanged(object sender, EventArgs e)
-        {
-
+            MostrarITBIS();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0 || dataGridView1.SelectedCells.Count > 0)
             {
-                txt_ID.Text = dataGridView1.CurrentRow.Cells["Id_ITBIS"].Value.ToString();
+                txt_ID.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
                 txt_Drescripcion.Text = dataGridView1.CurrentRow.Cells["Descripcion"].Value.ToString();
                 txt_Tarifa.Text = dataGridView1.CurrentRow.Cells["Valor"].Value.ToString();
+            }
+        }
+
+        private void BtnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos(this);
+        }
+
+        private void LimpiarCampos(Control control)
+        {
+            foreach (var txt in control.Controls)
+            {
+                if (txt is TextBox)
+                {
+                    ((TextBox)txt).Clear();
+                }
             }
         }
     }

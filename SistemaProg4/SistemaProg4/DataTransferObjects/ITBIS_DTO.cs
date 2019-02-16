@@ -34,10 +34,10 @@ namespace SistemaProg4
         /// Mostrar registro
         /// </summary>
         /// <returns>todos los registro</returns>
-        public DataTable MostrarITBIS()
+        public DataTable MostrarRegistros()
         {
             DataTable tabla = new DataTable();
-            tabla = MostrarDatos();
+            tabla = MostrarRegistro();
             return tabla;
         }
 
@@ -49,5 +49,7 @@ namespace SistemaProg4
         {
             Editar(pId, pDescripcion, pTarifa);
         }
+
+        
     }
 }

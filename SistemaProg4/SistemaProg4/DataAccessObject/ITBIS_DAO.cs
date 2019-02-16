@@ -11,71 +11,73 @@ namespace SistemaProg4
 {
     public class ITBIS_DAO : Conexion
     {
-
-
         SqlDataReader leerfilas;
-        DataTable tabla;
-        SqlCommand comando;
+        //DataTable tabla;
 
-        public DataTable MostrarDatos()
+
+        protected DataTable MostrarRegistro()
         {
-            comando = new SqlCommand();
-            //comando.Connection = conexion.OpenConectar();
-            comando.CommandText = "SP_Buscar_Todos_Registro";
-            leerfilas = comando.ExecuteReader();
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandText = "sp_Buscar_Registro";
 
-            tabla = new DataTable();
-            tabla.Load(leerfilas);
-            //conexion.CloseConectar();
+                    cmd.Connection = connection;
+                    leerfilas = cmd.ExecuteReader();
 
-            comando.Parameters.Clear();
-            return tabla;
+                    using (var tabla = new DataTable())
+                    {
+                        //tabla = new DataTable();
+                        tabla.Load(leerfilas);
+                        return tabla;
+                    }
+                }
+            }
         }
 
         protected void Insertar(string descripcion, float tarifa)
         {
-            //comando.Connection = conexion.OpenConectar();kkkkkkkkkkk
             using (var connection = GetConnection())
             {
                 connection.Open();
-
                 using (var cmd = new SqlCommand())
                 {
                     cmd.CommandText = "SP_Insertar_Regristro";
                     cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar, 400));
                     cmd.Parameters.Add(new SqlParameter("@Valor", SqlDbType.Float));
                     cmd.Parameters["@Descripcion"].Value = descripcion;
                     cmd.Parameters["@Valor"].Value = tarifa;
+
                     cmd.Connection = connection;
                     cmd.ExecuteNonQuery();
                 }
-
             }
-            //conexion.CloseConectar();
-            //comando.Parameters.Clear();
         }
         protected void Editar(int id, string descripcion, float tarifa)
         {
             using (var connection = GetConnection())
             {
                 connection.Open();
-
                 using (var cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "SP_Insertar_Regristro";
+                    cmd.CommandText = "sp_Actualizar_Registro";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    comando.Parameters.Add(new SqlParameter("@Id_ITBIS", SqlDbType.Int));
-                    cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar, 400));
-                    cmd.Parameters.Add(new SqlParameter("@Valor", SqlDbType.Float));
+                    cmd.Parameters.Add(new SqlParameter("@Id_ITBIS", SqlDbType.TinyInt)).Value = id;
+                    cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar, 400)).Value = descripcion;
+                    cmd.Parameters.Add(new SqlParameter("@Valor", SqlDbType.Float)).Value = tarifa;
 
-                    comando.Parameters["@Id_ITBIS"].Value = id;
-                    cmd.Parameters["@Descripcion"].Value = descripcion;
-                    cmd.Parameters["@Valor"].Value = tarifa;
+                    //cmd.Parameters["@Id_ITBIS"].Value = id;
+                    //cmd.Parameters["@Descripcion"].Value = descripcion;
+                    //cmd.Parameters["@Valor"].Value = tarifa;
 
                     cmd.Connection = connection;
-                    cmd.ExecuteNonQuery();                    
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

@@ -35,7 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_Drescripcion = new System.Windows.Forms.TextBox();
             this.txt_Tarifa = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnLimpiarCampos = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -103,7 +103,6 @@
             this.txt_Drescripcion.Name = "txt_Drescripcion";
             this.txt_Drescripcion.Size = new System.Drawing.Size(196, 20);
             this.txt_Drescripcion.TabIndex = 6;
-            this.txt_Drescripcion.TextChanged += new System.EventHandler(this.txt_Drescripcion_TextChanged);
             // 
             // txt_Tarifa
             // 
@@ -113,14 +112,15 @@
             this.txt_Tarifa.Size = new System.Drawing.Size(112, 20);
             this.txt_Tarifa.TabIndex = 7;
             // 
-            // button2
+            // btnLimpiarCampos
             // 
-            this.button2.Location = new System.Drawing.Point(567, 145);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 50);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnLimpiarCampos.Location = new System.Drawing.Point(567, 145);
+            this.btnLimpiarCampos.Name = "btnLimpiarCampos";
+            this.btnLimpiarCampos.Size = new System.Drawing.Size(95, 50);
+            this.btnLimpiarCampos.TabIndex = 9;
+            this.btnLimpiarCampos.Text = "Limpiar Campos";
+            this.btnLimpiarCampos.UseVisualStyleBackColor = true;
+            this.btnLimpiarCampos.Click += new System.EventHandler(this.BtnLimpiarCampos_Click);
             // 
             // btnGuardar
             // 
@@ -139,7 +139,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(671, 280);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnLimpiarCampos);
             this.Controls.Add(this.txt_Tarifa);
             this.Controls.Add(this.txt_Drescripcion);
             this.Controls.Add(this.label3);
@@ -166,7 +166,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_Drescripcion;
         private System.Windows.Forms.TextBox txt_Tarifa;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnLimpiarCampos;
         private System.Windows.Forms.Button btnGuardar;
     }
 }
